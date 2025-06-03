@@ -1,0 +1,32 @@
+p{
+   color: red;
+}
+#abc{
+    color: aqua;
+}
+#sp{
+    color: black;
+}
+
+/* child selector  > */
+#ol>#list{        
+color: red;
+}
+#ol>#list1{        
+color: blue;
+}
+
+
+
+
+
+/* h1 -- selector */  
+/* color -- property*/
+/* blue  -- value*/
+/* color:blue -- declaration */
+
+/* **Cascading means  parent to child value*/
+/* presedence  means priority*/
+/* inheritence  */
+
+/*css follow  these rules  */
