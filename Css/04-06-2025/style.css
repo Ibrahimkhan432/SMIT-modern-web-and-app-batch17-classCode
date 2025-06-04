@@ -1,0 +1,24 @@
+#div1 {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    /* background-color: rgb(255, 0, 0); */
+}
+
+h1 {
+    background-color: blue;
+}
+
+#d1{
+    width: 100PX;
+    height: 100PX;
+    background-color: red;
+}
+
+#d2{
+    position: absolute;
+    width: 100PX;
+    height: 100PX;
+    top: 60PX;
+    background-color: rgba(0,0, 255,);
+}

@@ -1,0 +1,38 @@
+/* *{
+    color: red;
+}
+p{
+    color: blue;
+}
+#p{
+    color: yellow;
+}
+#p>i{
+    color: green !important;
+}
+#p>i{
+    color: brown ;
+} */
+
+/* #abc{
+    color: red;
+    font-size: 80px;
+}
+h1{
+    color: blue;
+    font-size:inherit ;
+} */
+body {
+font-family: Arial, Verdana, sans-serif;
+color: #665544;
+padding: 30px;
+}
+.page {
+border: 1px solid red;
+background-color: #d9d4d4;
+padding: inherit;
+}
+
+/* p{
+    color: rgba(137, 234, 203, 0.828);
+} */
