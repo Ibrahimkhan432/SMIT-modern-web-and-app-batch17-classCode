@@ -1,0 +1,26 @@
+/* h1{
+    color: red;   
+    color: hsla(100, 100%, 50%,0);
+} */
+
+/* p{
+    font-size:40px;
+    font-weight: medium;
+    font-style: oblique;
+} */
+
+/* p{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ,monospace ;
+} */
+ 
+ /* font size */
+p{
+    font-size: 100%;
+}
+#div{
+    /* font-size: 75%; */
+    font-size: 200%;
+}
+#p{
+    font-size: 75%;
+}
