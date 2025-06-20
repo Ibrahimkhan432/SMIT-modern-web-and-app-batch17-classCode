@@ -25,8 +25,32 @@
 
     #title {
       text-align: center;
-      font-family: "Caprasimo", serif;
+    text-shadow: 10px 10px 2px rgb(201, 43, 43)  ;
+
+    /* text shadow link --  https://cssgenerator.org/text-shadow-css-generator.html */
     }
+
+    /* pseudo code  */
+#title::first-letter{
+font-size: 50px;
+color:brown;
+}
+
+#h3:hover {
+/* text-shadow: 2px 2px 2px red; */
+background-color: pink;
+}
+button:active{
+  background-color: aqua;
+}
+input:focus{
+  background-color: blue;
+  color: white;
+}
+
+
+
+
     .subtitle {
       text-indent: 30px;
     }   
@@ -44,11 +68,11 @@
     <div id="parent">
       <h1 id="title">Application for Laptop</h1>
 
-      <h3>To,</h3>
+      <h3 id="h3">To,</h3>
       <h3 class="subtitle">The It Department,</h3>
       <h3 class="subtitle">Zaitoon Ashraf It Park,</h3>
 
-      <p id="para">
+      <p class="para">
         With due respecrt i am the student of web and app development i have
         need a laptop in every class. kindly accept my resquest to borrow laptop
         from reception everyday Lorem ipsum dolor, sit amet consectetur
@@ -64,8 +88,30 @@
         Repudiandae provident nihil distinctio fugiat quaerat ut dolore
         laudantium cum eligendi id.
       </p>
+<p class="vfuhb">fdkbjhk</p>
+<p class="vfuhbdfkvnefrg">fdkbjhk</p>
+<p class="vfuhb">fdkbjhk</p>
+
+
       <h3 class="right">Yours Obediently</h3>
       <h3 class="right">Ibrahim khan</h3>
+<input type="text" placeholder="enter your name">
+      <button>Submit</button>
+
+
+
     </div>
+
+<!-- class  --  -->
+<!-- by default styling -->
+<!-- first letter , line -->
+
+<!-- element --  -->
+<!-- user appearanse / respond user -->
+<!-- focus,active,hover -->
+
+
+
+
   </body>
 </html>
