@@ -1,0 +1,100 @@
+/* #div{
+border: 2px solid black;
+width: 50%;
+
+}
+p{
+    width: 50%;
+    background-color: red;
+} */
+
+/* #div {
+  width: 500px;
+  max-width: 300px;
+  min-width: 200px;
+  border: 2px solid red;
+  background-color: green;
+  height: 300px;
+} */
+
+/* height */
+
+/* #div {
+  border: 2px solid red;
+  height: 300px;
+  max-height: 300px;
+  min-height: 50px;
+} */
+
+
+/* overflow content */
+ /* #div {
+  border: 2px solid red;
+  background-color: aqua;
+  max-height:300px;
+  min-height: 50px;
+  overflow-x: scroll;
+}  */
+
+/* div{
+    background-color: aqua;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    margin: 4 0px; */
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+
+/* } */
+/* p{
+    background-color: red;
+    padding: 10px;
+    margin: 20px;
+}
+body{
+    background-color: orange;
+} */
+/* div{
+    border: 2px solid brown;
+        width: 200px ;
+        height: 200px;
+        padding: 10px 10px 10px 10px;
+        margin: 30px;
+    }
+    #par{
+    margin: 20px;
+    border: none;
+    }
+    body{
+    background-color: yellow;
+    } */
+
+    /* div{ */
+        /* width: 300px; */
+        /* height: 300px; */
+        /* border-radius: 150px; */
+        /* border-width: 0px 0px 0px 10px ; */
+        /* border-width: 20px;
+        border-style: solid; */
+        
+        /* short handed */
+        /* border: 20px solid green;
+        border-color: red orange purple green;
+    } */
+
+/* margin */
+
+div{
+    border: 3px solid blue;
+    width: 300px;
+    height: 300px;
+    /* margin: 40px 300px; */
+    margin: 0px auto ;
+    /* margin: 0px auto 0px auto; */
+}
+
+li.home{
+    /* visibility: hidden; */
+    display: none;
+}
+
