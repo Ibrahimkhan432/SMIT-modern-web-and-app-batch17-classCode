@@ -1,0 +1,31 @@
+/* table{
+    border: 2px solid blue;
+}
+th, td{
+    border: 1px solid black;
+} */
+
+/* periodic table */
+
+table{
+    /* border: 2px solid green; */
+    margin: 100px auto;
+}
+td{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    text-transform: uppercase;
+    /* border-collapse: collapse; */
+}
+.blank{
+    border: none;
+}
+.aqua{
+    background-color: aqua;
+}
+.aqua:hover{
+background-color: rgb(131, 255, 255);
+color: white;
+}
