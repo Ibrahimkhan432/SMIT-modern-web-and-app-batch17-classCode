@@ -12,9 +12,8 @@
 //     console.log("sjdfgbhs")
 //     return a + b
 // }
-
+//  --------if inside function----
 // console.log(addNumber(2, 3))
-
 // var stdName = "ali"
 // function checkName(stdName) {
 
@@ -25,33 +24,28 @@
 // }
 // console.log(checkName(stdName))
 
+// ----------scoping-----local vs global var
 // var firstName = "Ibrahim"
 // var lastName = prompt("enter your last name ")
-
 // function myName(firstName,lastName){
-
 //     var fullName = firstName + lastName
 //     // console.log(fullName)
 // }
 // console.log(fullName) // not define error
 // myName(firstName,lastName)
 
-
+//  --changable argument name
 // function sum(fvalue,lvalue) {    //parameter
-
 // console.log(fvalue , lvalue)
-
 // }
-
 // var fname = "ibrahim"
 // var lname = "khan"
-
 // sum(lname,fname) //argument  consider as a order not a value
-
 
 // if (true) {
 //     // console.log(name)
 // }
+
 
 // function test() {   // pure function
 //     // return name + Date(),to String,random    -- >impure function
@@ -59,6 +53,9 @@
 // }
 // console.log(name)
 // test()
+
+
+
 // sum = undefined
 // var sum;
 // test()
@@ -70,10 +67,11 @@
 
 // ----arrow function--
 
-var arr = [1, 2, 3, 4, 5]
+// high order function example
+// var arr = [1, 2, 3, 4, 5]
 
-arr.map((value) => {
+// arr.map((value) => {
 
-    var mult = value * 5
-    console.log(mult)
-})
+//     var mult = value * 5
+//     console.log(mult)
+// })
