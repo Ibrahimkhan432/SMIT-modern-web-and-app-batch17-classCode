@@ -1,28 +1,30 @@
-
-body{
+body {
     background-color: lightblue;
 }
-#todoContainer{
-border: 1px solid gray;
-background-color: white;
-width: 600px;
-margin: auto;
-margin-top: 200px;
-box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-border-radius: 10px;
-text-align: center;
+
+#todoContainer {
+    border: 1px solid gray;
+    background-color: white;
+    width: 600px;
+    margin: auto;
+    margin-top: 200px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 10px;
+    text-align: center;
 }
+
 input {
-width: 300px;
-height: 30px;
-margin: 10px;
-border-radius: 5px;
-border: 1px solid gray;
-outline: none;
-border-radius: 20px;
-font-size: 20px;
+    width: 300px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+    border-radius: 20px;
+    font-size: 20px;
 }
-#btn{
+
+#btn {
     border-radius: 20px;
     background-color: blue;
     color: white;
@@ -31,16 +33,29 @@ font-size: 20px;
     cursor: pointer;
     border-style: none;
 }
+
 li {
     list-style: none;
     font-size: 30px;
     color: blue;
+    margin: 10px;
+    padding: 10px;
 }
-.deleteBtn{
+
+.deleteBtn {
     border-radius: 30px;
     background-color: red;
     font-size: 20px;
     color: white;
     cursor: pointer;
-border-style: none;
+    border-style: none;
+}
+
+.edit {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    border-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }

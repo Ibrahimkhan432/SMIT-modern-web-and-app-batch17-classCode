@@ -1,7 +1,7 @@
 function addTask() {
     var todoData = document.getElementById("todoInput")
     var todoValue = todoData.value
-    console.log(todoValue);
+    // console.log(todoValue);
     if (todoValue.trim() === "") {
         alert("Please Enter a Task")
     }
@@ -11,7 +11,7 @@ function addTask() {
     listItem.appendChild(list)
     // or
     // listItem.textContent = todoValue
-    console.log(listItem)
+    // console.log(listItem)
 
 
     var todoListData = document.getElementById("todo-list")
@@ -21,7 +21,7 @@ function addTask() {
     // delete button
     var deleteBtn = document.createElement("button")
     var deleteText = document.createTextNode("Delete")
-    console.log(deleteBtn)
+    // console.log(deleteBtn)
 
     deleteBtn.appendChild(deleteText)
     listItem.appendChild(deleteBtn)
@@ -38,12 +38,20 @@ function addTask() {
 
     // edit data
     var editBtn = document.createElement("button")
+    editBtn.setAttribute("class", "edit")
     var editText = document.createTextNode("Edit")
+    console.log(listItem.childNodes[0].nodeValue)
     editBtn.addEventListener("click", function () {
-       var updateText = prompt(todoValue)
+        var updateText = prompt(listItem.childNodes[0].nodeValue, todoValue)
+
+        listItem.childNodes[0].nodeValue = updateText
+        console.log(updateText)
     })
     editBtn.appendChild(editText)
     listItem.appendChild(editBtn)
     //apply set attribute for styling
     // editBtn.appendChild(ed)
 }
+
+// alert("text")
+// prompt("enter prompt", "23456789")
