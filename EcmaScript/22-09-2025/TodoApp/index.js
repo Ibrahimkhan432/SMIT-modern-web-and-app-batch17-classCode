@@ -55,3 +55,9 @@ function addTask() {
 
 // alert("text")
 // prompt("enter prompt", "23456789")
+
+//delete All
+function deleteAll() {
+    var deleteAll = document.getElementById("todo-list")
+    deleteAll.innerHTML = ""
+}
