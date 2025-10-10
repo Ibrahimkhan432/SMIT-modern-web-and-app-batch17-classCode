@@ -128,17 +128,17 @@
 
 
 //    -- local storage
-var obj = {
-    name: "ali",
-    roll: 20
-}
-console.log(obj)
+// var obj = {
+//     name: "ali",
+//     roll: 20
+// }
+// console.log(obj)
 
-localStorage.setItem("key", JSON.stringify(obj))
-console.log(localStorage.setItem("key", JSON.stringify(obj)))
+// // localStorage.setItem("key", JSON.stringify(obj))
+// console.log(localStorage.setItem("key", JSON.stringify(obj)))
 
-var data = JSON.parse(localStorage.getItem("key"))
-console.log(data)
+// var data = JSON.parse(localStorage.getItem("key"))
+// console.log(data)
 
 function signup() {
     var name = document.getElementById("signupname").value
@@ -146,11 +146,39 @@ function signup() {
     var password = document.getElementById("signuppassword").value
     console.log(name, email, password)
 
+    var recievedData = localStorage.getItem("signup")
+    // --or
+    if (recievedData) {
+        recievedData = JSON.parse(recievedData)
+    }
+    else {
+        recievedData = []
+    }
+
     var stdSignup = {
         name: name,
         email: email,
         password: password
     }
+    recievedData.push(stdSignup)
+    localStorage.setItem("signup", JSON.stringify(recievedData))
 
-    var savedData = localStorage.setItem("signup", JSON.stringify(stdSignup))
+
 }
+
+function signin() {
+    signinemail = document.getElementById("signinemail").value
+    signinpassword = document.getElementById("signinpassword").value
+
+    var recievedData = JSON.parse(localStorage.getItem("signup"))
+
+    for (var i = 0; i < recievedData.length; i++) {
+        if (recievedData[i].email ===signinemail) {
+            location.href = "../01-09-2025/index.html"
+            console.log("success")
+        }
+    }
+}
+
+
+
