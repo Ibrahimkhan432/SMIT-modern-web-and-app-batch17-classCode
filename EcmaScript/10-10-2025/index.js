@@ -39,85 +39,172 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
-import { getAuth,
-   createUserWithEmailAndPassword ,
-   onAuthStateChanged ,
-   signInWithEmailAndPassword 
- } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection, addDoc,
+  getDocs,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAa3px47pRJnqQ94bkFrF1xujHUvVP8fFw",
-    authDomain: "modern-wma-batch-17.firebaseapp.com",
-    projectId: "modern-wma-batch-17",
-    storageBucket: "modern-wma-batch-17.firebasestorage.app",
-    messagingSenderId: "1031506221361",
-    appId: "1:1031506221361:web:592c18a3392a9d559a3810",
-    measurementId: "G-24YP5MD9DV"
+  apiKey: "AIzaSyAa3px47pRJnqQ94bkFrF1xujHUvVP8fFw",
+  authDomain: "modern-wma-batch-17.firebaseapp.com",
+  projectId: "modern-wma-batch-17",
+  storageBucket: "modern-wma-batch-17.firebasestorage.app",
+  messagingSenderId: "1031506221361",
+  appId: "1:1031506221361:web:592c18a3392a9d559a3810",
+  measurementId: "G-24YP5MD9DV"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-console.log(app)
+// console.log(app)
 const auth = getAuth(app);
-console.log(auth)
+// console.log(auth)
 
+const db = getFirestore(app);
+console.log("db connected", db)
 
 var email = document.getElementById("semail")
 var password = document.getElementById("spassword")
+var signup_btn = document.getElementById("signupBtn")
+var showUser = document.getElementById("renderUser")
+var lemail = document.getElementById("lemail")
+var lpassword = document.getElementById("lpassword")
+var login_btn = document.getElementById("loginBtn")
+var lgoutBtn = document.getElementById("lgoutBtn")
+var authContainer = document.getElementById("authContainer")
+var googleBtn = document.getElementById("googleBtn")
+// todo app
+var item = document.getElementById("todo-item")
+var addBtn = document.getElementById("todoBtn")
+var todoList = document.getElementById("todo-list")
+
+// signup function
+signup_btn.addEventListener("click", signup)
+// login function
+login_btn.addEventListener("click", login)
+// signout
+lgoutBtn.addEventListener("click", lgout)
+
+// google login
+googleBtn.addEventListener("click", googleLogin)
 
 
-var signup_btn =document.getElementById("signupBtn")
-
-signup_btn.addEventListener("click",signup)
+// todo app
+addBtn.addEventListener("click", addTodo)
 
 
 // check already users
 onAuthStateChanged(auth, (user) => {
   if (user) {
-  console.log(user.email)
-    const uid = user.uid;
+    showUser.innerHTML = `Welcome  ${user.email}`
+    lgoutBtn.style.display = "block"
+    authContainer.style.display = "none"
+
   } else {
-    
+    lgoutBtn.style.display = "none"
+    authContainer.style.display = "block"
   }
 });
 
+// create a user
+function signup() {
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // console.log(user)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // console.log(errorMessage)
+    });
+}
 
+// login user
+function login() {
+  signInWithEmailAndPassword(auth, lemail.value, lpassword.value)
+    .then((userCredential) => {
+      // console.log("user logged in")
+      // location.href = "https://facebook.com"
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // console.log(errorMessage)
+    });
+}
 
-function signup(){
-createUserWithEmailAndPassword(auth, email.value, password.value)
-  .then((userCredential) => {
-    const user = userCredential.user;
-  console.log(user)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  console.log(errorMessage)
+// lgout user
+function lgout() {
+  signOut(auth).then(() => {
+    // console.log("user lgout")
+  }).catch((error) => {
+    console.log(error.message)
   });
 }
 
-// user login
+// continue with google
+const provider = new GoogleAuthProvider();
 
-var lemail = document.getElementById("lemail")
-var lpassword = document.getElementById("lpassword")
-var login_btn =document.getElementById("loginBtn")
-login_btn.addEventListener("click",login)
-
-function login(){
-    signInWithEmailAndPassword(auth, lemail.value, lpassword.value)
-  .then((userCredential) => {
-    console.log("user logged in")
-    location.href = "https://facebook.com"
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage)
-  });
+function googleLogin() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      // ...
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 }
+
+
+// todo app
+
+const todosCollection = collection(db, "todos")
+addTodo()
+async function addTodo() {
+  try {
+    const obj = {
+      item: item.value,
+      createdAt: new Date().toLocaleString()
+    }
+    console.log("todos=>", obj)
+    const docRef = await addDoc((todosCollection), obj);
+    // console.log("docref", docRef)
+    console.log("todo added")
+    // read data
+      const querySnapshot = await getDocs(todosCollection);
+      querySnapshot.forEach((item) => {
+        // doc.data() is never undefined for query doc snapshots
+       console.log(item.id)
+       console.log(item.data().item)
+      });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+
+
