@@ -40,10 +40,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
 import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+import {
   getFirestore,
   collection, addDoc,
   getDocs,
-  doc
+  doc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 import {
   getAuth,
@@ -60,13 +67,13 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAa3px47pRJnqQ94bkFrF1xujHUvVP8fFw",
-  authDomain: "modern-wma-batch-17.firebaseapp.com",
-  projectId: "modern-wma-batch-17",
-  storageBucket: "modern-wma-batch-17.firebasestorage.app",
-  messagingSenderId: "1031506221361",
-  appId: "1:1031506221361:web:592c18a3392a9d559a3810",
-  measurementId: "G-24YP5MD9DV"
+  apiKey: "AIzaSyAK3siS7mAt0EgGQMdXK_-YUeSqjdNi1X0",
+  authDomain: "full-package-firebase.firebaseapp.com",
+  projectId: "full-package-firebase",
+  storageBucket: "full-package-firebase.appspot.com",
+  messagingSenderId: "616758922997",
+  appId: "1:616758922997:web:b7830020af1a181f7f7fbc",
+  measurementId: "G-B90MDHN8YS"
 };
 
 // Initialize Firebase
@@ -94,19 +101,27 @@ var item = document.getElementById("todo-item")
 var addBtn = document.getElementById("todoBtn")
 var todoList = document.getElementById("todo-list")
 
+
+// storage
+var drag_file = document.getElementById("drag_file")
+var upload_file = document.getElementById("upload_file")
+
 // signup function
 signup_btn.addEventListener("click", signup)
 // login function
 login_btn.addEventListener("click", login)
 // signout
 lgoutBtn.addEventListener("click", lgout)
-
 // google login
 googleBtn.addEventListener("click", googleLogin)
 
-
 // todo app
 addBtn.addEventListener("click", addTodo)
+
+// storage
+upload_file.addEventListener("click", uploadFile)
+
+
 
 
 // check already users
@@ -181,30 +196,89 @@ function googleLogin() {
 
 
 // todo app
-
+getTodos()
 const todosCollection = collection(db, "todos")
-addTodo()
+
 async function addTodo() {
+
   try {
     const obj = {
       item: item.value,
       createdAt: new Date().toLocaleString()
     }
-    console.log("todos=>", obj)
+    // console.log("todos=>", obj)
     const docRef = await addDoc((todosCollection), obj);
-    // console.log("docref", docRef)
     console.log("todo added")
-    // read data
-      const querySnapshot = await getDocs(todosCollection);
-      querySnapshot.forEach((item) => {
-        // doc.data() is never undefined for query doc snapshots
-       console.log(item.id)
-       console.log(item.data().item)
-      });
+    getTodos()
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
 
+getTodos()
+async function getTodos() {
+  try {
+    const querySnapshot = await getDocs(todosCollection);
+
+    querySnapshot.forEach((doc) => {
+      // console.log(doc.id)
+      // console.log(doc.data().item)
+      //  destructure data
+      const { item, createdAt } = doc.data()
+      const todoItems = `<li id="${doc.id}">  ${item}  ${createdAt}</li>`
+      todoList.innerHTML += todoItems
 
 
+
+    });
+    todoList.childNodes.forEach((items) => {
+      items.addEventListener("click", deleteTodo)
+    })
+
+
+  } catch (error) {
+  }
+}
+
+
+// delete todo 
+async function deleteTodo() {
+  try {
+    const docId = this.id
+    console.log(docId)
+    await deleteDoc(doc(db, "todos", docId));
+    console.log("todo deleted")
+    item.value = ""
+    getTodos()
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+
+// storege
+const storage = getStorage();
+console.log("storage=>", storage)
+
+
+
+async function uploadFile() {
+
+  console.log(drag_file.files[0])
+  try {
+    const bikeStorage = ref(storage,"bikes/"+drag_file.files[0].name);
+    console.log("storage function is working")
+    uploadBytes(bikeStorage,drag_file.files[0] ).
+      then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+        console.log(snapshot)
+      });
+    getDownloadURL(bikeStorage)
+      .then((url) => {
+        console.log(url)
+      });
+  } catch (error) {
+    console.log(error.message)
+  }
+
+}
