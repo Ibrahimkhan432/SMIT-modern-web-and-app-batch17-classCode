@@ -105,6 +105,7 @@ var todoList = document.getElementById("todo-list")
 // storage
 var drag_file = document.getElementById("drag_file")
 var upload_file = document.getElementById("upload_file")
+var container = document.getElementById("container")
 
 // signup function
 signup_btn.addEventListener("click", signup)
@@ -254,31 +255,49 @@ async function deleteTodo() {
     console.log(error.message)
   }
 }
+getTodos()
 
 
 // storege
 const storage = getStorage();
 console.log("storage=>", storage)
 
+const bikeCollection = collection(db, "bikes")
 
-
+getImagesFromDB()
 async function uploadFile() {
-
   console.log(drag_file.files[0])
   try {
-    const bikeStorage = ref(storage,"bikes/"+drag_file.files[0].name);
+    const bikeStorage = ref(storage, drag_file.files[0].name);
     console.log("storage function is working")
-    uploadBytes(bikeStorage,drag_file.files[0] ).
+    uploadBytes(bikeStorage, drag_file.files[0]).
       then((snapshot) => {
         console.log('Uploaded a blob or file!');
         console.log(snapshot)
+        getDownloadURL(bikeStorage)
+          .then((url) => {
+            console.log(url)
+            getImagesFromDB()
+          });
       });
-    getDownloadURL(bikeStorage)
-      .then((url) => {
-        console.log(url)
-      });
+    const images = await addDoc((bikeCollection), { category: "bike", url: drag_file.files[0].name, createdAt: new Date().toLocaleString() });
   } catch (error) {
     console.log(error.message)
   }
 
+}
+
+async function getImagesFromDB() {
+  try {
+    const querySnapshot = await getDocs(bikeCollection);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data().url)
+      console.log(doc.id)
+      const img = ` <img id=${doc.id} src="${doc.data().url}" alt="" style="width: 300px; height: 300px;">`
+      container.innerHTML += img
+    }
+    )
+  } catch (error) {
+    console.log(error.message)
+  }
 }
