@@ -3,6 +3,7 @@
 // import Bike from "./components/Bike";
 
 import { useEffect, useState, useContext, createContext } from "react";
+import RouterPage from "./router/RouterPage";
 
 // //    -- props ---
 // // internal component
@@ -271,40 +272,40 @@ import { useEffect, useState, useContext, createContext } from "react";
 
 //  ---use context----
 
-const userContext = createContext();
- function FirstComponent() {
-   const [uname,setUname] = useState("ali")
+// const userContext = createContext();
+//  function FirstComponent() {
+//    const [uname,setUname] = useState("ali")
 
-  return (
-    <>
-      <userContext.Provider value={uname}>
-      <SecondComponent />
-    </userContext.Provider>
-    </>
-  );
-}
- function SecondComponent() {
-  return (
-    <>
-      <h1>second component</h1>
-      <ThirdComponent />
-    </>
-  );
-}
- function ThirdComponent() {
-  const  user  = useContext(userContext);
-  return (
-    <>
-      <h1>third component</h1>
-      <h1>{`Hello ${user} again!`}</h1>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <userContext.Provider value={uname}>
+//       <SecondComponent />
+//     </userContext.Provider>
+//     </>
+//   );
+// }
+//  function SecondComponent() {
+//   return (
+//     <>
+//       <h1>second component</h1>
+//       <ThirdComponent />
+//     </>
+//   );
+// }
+//  function ThirdComponent() {
+//   const  user  = useContext(userContext);
+//   return (
+//     <>
+//       <h1>third component</h1>
+//       <h1>{`Hello ${user} again!`}</h1>
+//     </>
+//   );
+// }
 
 export function App() {
   return (
     <>
-      <FirstComponent />
+    <RouterPage/>
     </>
   );
 }
