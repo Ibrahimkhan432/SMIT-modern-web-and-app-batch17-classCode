@@ -4,6 +4,8 @@
 
 import { useEffect, useState, useContext, createContext } from "react";
 import RouterPage from "./router/RouterPage";
+import UserContext from "./pages/UserContext";
+// import UserContext from "./pages/UserContext";
 
 // //    -- props ---
 // // internal component
@@ -305,7 +307,10 @@ import RouterPage from "./router/RouterPage";
 export function App() {
   return (
     <>
-    <RouterPage/>
+   {/* <UserContext/> */}
+   <UserContext>
+   <RouterPage/>
+   </UserContext>
     </>
   );
 }

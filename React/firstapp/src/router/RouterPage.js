@@ -5,6 +5,7 @@ import NotFoundPage from "../pages/NotFound";
 import Signup from "../pages/Signup";
 import LoginPage from "../pages/Login";
 import AuthPage from "../pages/Auth";
+import FirstApi from "../pages/FirstApiFetchData/FirstApiFetchData";
 
 
 function RouterPage() {
@@ -16,6 +17,7 @@ function RouterPage() {
         <Route  path="signup" element={<Signup/>}  />
         <Route  path="login" element={<LoginPage/>}  />
         <Route  path="auth" element={<AuthPage/>}  />
+        <Route  path="api" element={<FirstApi/>}  />
       </Routes>
   );
 }
