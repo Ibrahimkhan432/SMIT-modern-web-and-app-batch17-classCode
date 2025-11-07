@@ -5,6 +5,7 @@ import LoginPage from "./Login";
 
 function HomePge(){
 
+   
     // const user = useContext(globalUser)
     // destructure object
     const {name,age}=useContext(globalUser)

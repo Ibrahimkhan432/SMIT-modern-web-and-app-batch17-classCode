@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import LoginPage from "../pages/Login";
 import AuthPage from "../pages/Auth";
 import FirstApi from "../pages/FirstApiFetchData/FirstApiFetchData";
+import Counter from "../pages/Counter";
 
 
 function RouterPage() {
@@ -18,6 +19,7 @@ function RouterPage() {
         <Route  path="login" element={<LoginPage/>}  />
         <Route  path="auth" element={<AuthPage/>}  />
         <Route  path="api" element={<FirstApi/>}  />
+        <Route  path="counter/:myName" element={<Counter/>}  />
       </Routes>
   );
 }
