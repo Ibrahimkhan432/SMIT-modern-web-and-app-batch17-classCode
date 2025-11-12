@@ -5,6 +5,7 @@
 import { useEffect, useState, useContext, createContext } from "react";
 import RouterPage from "./router/RouterPage";
 import UserContext from "./pages/UserContext";
+import NestedRoute from "./router/NestedRoute";
 // import UserContext from "./pages/UserContext";
 
 // //    -- props ---
@@ -309,7 +310,8 @@ export function App() {
     <>
    {/* <UserContext/> */}
    <UserContext>
-   <RouterPage/>
+   {/* <RouterPage/> */}
+   <NestedRoute/>
    </UserContext>
     </>
   );

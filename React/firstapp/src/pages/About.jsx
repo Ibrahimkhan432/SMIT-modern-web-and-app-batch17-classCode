@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import { globalUser } from "./UserContext";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 export default function AboutPage() {
-    const {age} = useContext(globalUser)
+const {id} = useParams()
     return (
         <>
-            <h1>this is about page</h1>
-            <h1>my age is {age} in about page</h1>
+            <h1>About page with id {id}</h1>  
+         <Outlet/>      
         </>
     );
 }
